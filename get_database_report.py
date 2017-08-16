@@ -5,7 +5,7 @@ import sys
 
 def main():
     # Define our connection string
-    conn_string = "host='localhost' dbname='newsdata.sql' user='postgres' password='secret'"
+    conn_string = "host='localhost' dbname='news' user='postgres' password='secret'"
 
     # print the connection string we will use to connect
     print "Connecting to database\n	->%s" % (conn_string)
