@@ -2,8 +2,15 @@
 import psycopg2
 import sys
 
-import queries
+import queries, questions
 import pprint
+
+
+def display_log_analysis(conn, cursor, question, query):
+    cursor.execute(query)
+    articles = cursor.fetchall()
+    conn.close()
+    return articles
 
 
 def main():
@@ -33,6 +40,8 @@ def main():
     # for most people this isn't very useful so we'll show you how to return
     # columns as a dictionary (hash) in the next example.
     pprint.pprint(records)
+
+    display_log_analysis(conn, cursor, questions.question_1, queries.query_1)
 
 
 if __name__ == "__main__":
