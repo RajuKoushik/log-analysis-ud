@@ -6,11 +6,23 @@ import queries, questions
 import pprint
 
 
-def display_log_analysis(conn, cursor, question, query):
+def display_log_analysis(query):
+    conn_string = "host='localhost' dbname='news' user='postgres' password='secret'"
+    conn = psycopg2.connect(conn_string)
+    cursor = conn.cursor()
     cursor.execute(query)
     articles = cursor.fetchall()
     conn.close()
     return articles
+
+
+def solve(question, query, suffix='views'):
+    query = query.replace('\n', ' ')
+    result = display_log_analysis(query)
+    print question
+    for i in range(len(result)):
+        print '\t', i + 1, '.', result[i][0], '--', result[i][1], suffix
+    print ''
 
 
 def main():
@@ -41,7 +53,9 @@ def main():
     # columns as a dictionary (hash) in the next example.
     pprint.pprint(records)
 
-    display_log_analysis(conn, cursor, questions.question_1, queries.query_1)
+    solve(questions.question_1, queries.query_1)
+    solve(questions.question_2, queries.query_2)
+    solve(questions.question_3, queries.query_3)
 
 
 if __name__ == "__main__":
