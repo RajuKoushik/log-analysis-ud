@@ -1,12 +1,15 @@
 #!/usr/bin/python
 import psycopg2
-import sys
 
-import queries, questions
-import pprint
+import queries
+import questions
 
 
 def display_log_analysis(query):
+    """
+    :param query: The individual query
+    :return: returns the result after the query is executed
+    """
     # Define our connection string
     conn_string = "host='localhost' dbname='news' user='postgres' password='secret'"
 
@@ -24,6 +27,12 @@ def display_log_analysis(query):
 
 
 def solve(question, query, suffix='views'):
+    """
+    This function is to printout the individual question and the result of it's query sequentially.
+    :param question: The question parameter to get the question printed
+    :param query: The quesry parameter to get the individual query
+    :param suffix:
+    """
     query = query.replace('\n', ' ')
     result = display_log_analysis(query)
     print question

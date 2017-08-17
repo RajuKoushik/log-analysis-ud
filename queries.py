@@ -1,3 +1,5 @@
+# queries
+
 query_1 = """
         SELECT articles.title, COUNT(log.path)
         FROM log
